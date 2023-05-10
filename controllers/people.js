@@ -18,6 +18,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET by id
+router.get("/:id", async (req, res) => {
+  try {
+    res.json(await People.findById(req.params.id)).status(200);
+  } catch (error) {
+    res.status(400).json(error);
+    console.log("error", error);
+  } finally {
+    console.log("this is finally");
+  }
+});
+
 // POST
 router.post("/", async (req, res) => {
   try {
